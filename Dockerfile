@@ -1,4 +1,4 @@
-FROM alpine as build
+FROM alpine:3.12.2 as build
 
 RUN apk add --no-cache --virtual build-dependencies \
     git \
@@ -16,7 +16,7 @@ RUN cmake \
 RUN make
 RUN make install
 
-FROM alpine
+FROM alpine:3.12.2
 
 COPY --from=build /opt/eigen/ /opt/eigen/
 
