@@ -1,4 +1,4 @@
-FROM 0x01be/base:3.12.2 as build
+FROM 0x01be/base as build
 
 RUN apk add --no-cache --virtual build-dependencies \
     git \
@@ -16,7 +16,7 @@ RUN cmake \
 RUN make
 RUN make install
 
-FROM 0x01be/base:3.12.2
+FROM 0x01be/base
 
 COPY --from=build /opt/eigen/ /opt/eigen/
 
